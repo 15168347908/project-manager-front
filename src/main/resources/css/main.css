@@ -1,0 +1,5 @@
+.easy-button, .easy-button--default { -fx-min-width: 60px; -fx-min-height: 40px; padding: 12px 20px; font-size: 14px; }
+
+.easy-button--default { border-color: #ebeef5; background-color: white; color: #c0c4cc; }
+
+/*# sourceMappingURL=main.css.map */

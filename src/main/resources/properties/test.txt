@@ -1,0 +1,2 @@
+Hello ${name}
+I'm fine, Thank you, and you too, ${myname}

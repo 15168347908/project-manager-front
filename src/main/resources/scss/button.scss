@@ -1,0 +1,22 @@
+@import "params";
+
+.easy-button {
+  -fx-min-width: 60px;
+  -fx-min-height: 40px;
+  padding: 12px 20px;
+  font-size: $text-base;
+}
+
+.easy-button--default {
+  @extend .easy-button;
+  border-color: #ebeef5;
+  background-color: white;
+  color: #c0c4cc;
+}
+
+.primary-button {
+
+}
+
+
+
