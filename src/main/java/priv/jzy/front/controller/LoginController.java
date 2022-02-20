@@ -5,9 +5,14 @@ import de.felixroske.jfxsupport.FXMLController;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TextArea;
-import org.springframework.beans.factory.annotation.Autowired;
+import javafx.scene.layout.FlowPane;
 import priv.jzy.front.api.UserApi;
+import priv.jzy.front.component.Loading;
+import priv.jzy.front.component.dialog.ErrorMsg;
+import priv.jzy.front.component.dialog.SuccessMsg;
+import priv.jzy.front.entity.R;
 import priv.jzy.front.entity.User;
+import priv.jzy.front.enumeration.ReturnCode;
 import priv.jzy.front.util.func.Try;
 
 import java.net.URL;
@@ -18,6 +23,7 @@ import java.util.ResourceBundle;
 public class LoginController implements Initializable {
     private final UserApi userApi;
 
+    public FlowPane container;
     public TextArea password;
     public TextArea account;
 
@@ -32,7 +38,7 @@ public class LoginController implements Initializable {
     }
 
     @FXML
-    public void register() {
+    public void register() throws Exception {
         String accountText = account.getText();
         String passwordText = password.getText();
 
@@ -40,7 +46,25 @@ public class LoginController implements Initializable {
         user.setAccount(accountText);
         user.setPassword(passwordText);
 
-        Try<JSONObject> res = userApi.register(user);
+        // 蒙层
+        Loading loading = Loading.bind(container);
+        loading.show();
+
+        Try<R<JSONObject>> tryRes = userApi.register(user);
+        if (tryRes.isFailure()) {
+            ErrorMsg.create(tryRes.toFailure().getException()).showAndWait();
+            return;
+        }
+
+        R<JSONObject> res = tryRes.get();
+        if (ReturnCode.SUCCESS.getCode().equals(res.getCode())) {
+            SuccessMsg.create("创建用户账号成功！").show();
+            // 跳转页面
+        } else {
+            ErrorMsg.create(res.getMsg()).show();
+        }
+
+        loading.hide();
     }
 
     @Override

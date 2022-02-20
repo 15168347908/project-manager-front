@@ -105,7 +105,7 @@ public class RequestContent implements Url, Method, Body, Headers, Params {
         if (params != null)
             params.forEach(builder::addQueryParameter);
         HttpUrl httpUrl = builder.build();
-        log.info("请求 url:" + httpUrl.url().getPath());
+        log.info("请求 url:" + httpUrl.url().toString());
 
         return httpUrl;
     }

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            xmlns="http://javafx.com/javafx/8">
+    <children>
+        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true"
+                   AnchorPane.bottomAnchor="125.0" AnchorPane.leftAnchor="125.0" AnchorPane.rightAnchor="125.0"
+                   AnchorPane.topAnchor="125.0">
+           <Image url="/images/loading.gif"/>
+        </ImageView>
+    </children>
+</AnchorPane>

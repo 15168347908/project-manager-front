@@ -6,6 +6,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import org.springframework.stereotype.Component;
 import priv.jzy.front.Env;
+import priv.jzy.front.entity.R;
 import priv.jzy.front.entity.User;
 import priv.jzy.front.util.Netter;
 import priv.jzy.front.util.func.Try;
@@ -24,7 +25,7 @@ public class UserApi {
 
     public static final String MODULE = Env.CORE + "/user";
 
-    public Try<JSONObject> register(User user) {
+    public Try<R<JSONObject>> register(User user) {
         RequestContent requestContent = factory.builder().post()
                 .body(RequestBody.create(JSONObject.toJSONString(user), APPLICATION_JSON))
                 .url(MODULE + "/register")
